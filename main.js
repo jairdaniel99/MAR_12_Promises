@@ -42,8 +42,8 @@ function getUserAsync(id) {
       console.log("Reading a user from a database...");
       // once we have our result from the database, we provide it to the callback function
       let user = { id: id, githubUsername: "ShareghYusefi" };
-      if (id !== 1) reject(new Error("Usewr not found"));
-      callback(user);
+      if (id !== 1) reject(new Error("User not found"));
+      resolve(user);
     }, 3000);
   });
 }
@@ -60,3 +60,17 @@ promiseObject
   });
 
 console.log("After");
+
+//another way of calling the promise
+
+async function displayUser(id) {
+  // await is used to wait for the result of a promise
+  try {
+    const user = await getUserAsync(id);
+    console.log("User: ", user);
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+}
+
+displayUser(2);
